@@ -1,0 +1,15 @@
+opam-version: "2.0"
+name: "edenic"
+version: "0.0.1"
+synopsis: "EDN Parser"
+description: """
+
+"""
+maintainer: "Marc-Andre Tremblay <marc@tremblay.io>"
+authors: "Marc-Andre Tremblay <marc@tremblay.io>"
+license: "MIT"
+homepage: "https://github.com/marctrem/edenic"
+bug-reports: "https://github.com/marctrem/edenic/issues"
+depends: [ "ocaml" "menhir" ]
+build: ["dune" "build"]
+install: []

@@ -1,0 +1,11 @@
+(library
+ (name edenic)
+ (libraries core)
+ (preprocess (pps ppx_inline_test))
+ (inline_tests))
+
+
+(ocamllex lexer)
+(menhir
+ (modules parser)
+ (flags --explain))
