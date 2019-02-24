@@ -24,7 +24,7 @@
 %token RIGHT_BRACE
 
 // brack [
-%token BEGIN_VECTOR
+%token BEGIN_VEC
 %token RIGHT_BRACK
 
 // PAREN (
@@ -34,10 +34,6 @@
 %token DISCARD
 
 %token EOF
-
-// Comments
-%token <string> PREFIX_COMMENT
-%token <string> SUFFIX_COMMENT
 
 %start <Edn.value option> prog
 %%
@@ -61,6 +57,7 @@ value:
   | k = KEYWORD { `Keyword k }
   | t = TAG; exp = value     { `Tag (t, exp) }
   | lv = edn_list { `List lv }
+  | vv = edn_vec { `Vec vv }
   | av = edn_assoc { `Assoc av }
   | s = edn_set { `Set s }
   | DISCARD; exp = value { `Discard exp }
@@ -70,6 +67,10 @@ value:
 
 edn_list:
   | BEGIN_LIST; list_values = value*; RIGHT_PAREN { list_values }
+;
+
+edn_vec:
+  | BEGIN_VEC; list_values = value*; RIGHT_BRACK { list_values }
 ;
 
 edn_assoc:

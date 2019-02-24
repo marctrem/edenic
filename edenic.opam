@@ -10,6 +10,5 @@ authors: "Marc-Andre Tremblay <marc@tremblay.io>"
 license: "MIT"
 homepage: "https://github.com/marctrem/edenic"
 bug-reports: "https://github.com/marctrem/edenic/issues"
-depends: [ "ocaml" "menhir" ]
-build: ["dune" "build"]
-install: []
+depends: [ "ocaml" "core" "menhir" ]
+build: [["dune" "build" "-p" name "-j" jobs]]

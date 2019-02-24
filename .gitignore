@@ -1,2 +1,5 @@
 _build/
+_opam/
+
 .merlin
+edenic.install

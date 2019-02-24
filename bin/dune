@@ -1,10 +1,5 @@
-(library
- (name main)
- (modules (:standard \ main_edenic))
- (libraries edenic))
-
 (executable
- (name main_edenic)
+ (name edenic_main)
  (public_name edenic)
- (modules main_edenic)
- (libraries main))
+ (modules edenic_main)
+ (libraries edenic))

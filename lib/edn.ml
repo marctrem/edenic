@@ -5,6 +5,7 @@ type value = [
     | `Int of int
     | `Char of char
     | `List of value list
+    | `Vec of value list
     | `Assoc of ((value * value) list)
     | `Set of value list
     | `String of string
@@ -53,6 +54,7 @@ let rec output_value outc = function
   | `Bool true  -> output_string outc "true"
   | `Bool false -> output_string outc "false"
   | `List li -> print_list outc li
+  | `Vec vi -> print_vec outc vi
   | `Assoc av -> print_assoc outc av
   | `Set s -> print_set outc s
   | `Discard v -> fprintf outc "#_"; output_value outc v
@@ -75,6 +77,14 @@ and print_list outc arr =
         output_string outc " ";
       output_value outc v) arr;
   output_string outc ")"
+
+and print_vec outc arr =
+  output_string outc "[";
+  List.iteri ~f:(fun i v ->
+      if i > 0 then
+        output_string outc " ";
+      output_value outc v) arr;
+  output_string outc "]"
 
 and print_set outc s =
     output_string outc "#{";

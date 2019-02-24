@@ -67,7 +67,7 @@ rule read =
   | ")"      { RIGHT_PAREN }
   | '{'      { BEGIN_ASSOC }
   | '}'      { RIGHT_BRACE }
-  | '['      { BEGIN_VECTOR }
+  | '['      { BEGIN_VEC }
   | ']'      { RIGHT_BRACK }
   | int '/' int { ratio_of_string (Lexing.lexeme lexbuf) }
   | int 'r' id { base_num_of_string (Lexing.lexeme lexbuf) }
