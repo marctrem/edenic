@@ -41,6 +41,7 @@ let float = digit* frac? exp?
 let white = [' ' '\t']+
 let newline = '\r' | '\n' | "\r\n"
 let id = ['a'-'z' 'A'-'Z' '-'] ['a'-'z' 'A'-'Z' '0'-'9' '_' '-']*
+let any_base_number = ['a'-'z' 'A'-'Z' '0'-'9' '=' '\\' '/' '+']+
 let tag = '#' id
 
 
@@ -70,7 +71,7 @@ rule read =
   | '['      { BEGIN_VEC }
   | ']'      { RIGHT_BRACK }
   | int '/' int { ratio_of_string (Lexing.lexeme lexbuf) }
-  | int 'r' id { base_num_of_string (Lexing.lexeme lexbuf) }
+  | int 'r' any_base_number { base_num_of_string (Lexing.lexeme lexbuf) }
   | _ { raise (SyntaxError ("Unexpected char: " ^ Lexing.lexeme lexbuf)) }
   | eof      { EOF }
 

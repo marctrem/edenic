@@ -28,4 +28,5 @@ let%test _ = eval "\\u42" = Some(`Char ((Char.of_int_exn 0x42)))
 let%test _ = eval "`32" = Some(`Backtick (`Int 32))
 let%test _ = eval "(1 2 3)" = Some(`List (`Int 1 :: `Int 2 :: `Int 3 :: []))
 let%test _ = eval "#{1 2 3}" = Some(`Set (`Int 1 :: `Int 2 :: `Int 3 :: []))
-
+let%test _ = eval "10r32" = Some(`BaseNum(10, "32"))
+let%test _ = eval "64raGVsbG8hCg==" = Some(`BaseNum(64, "aGVsbG8hCg=="))
